@@ -17,7 +17,7 @@ module.exports = function(grunt){
 					expand:true,
 					cwd:'js/',//源文件目录
 					src:['app.js','!**/*.min.js'],//所有的js文件
-					dest:'build/'//输出到此目录下
+					dest:'build/app.min.js'//输出到此目录下
 				}]
 			}
 		},
