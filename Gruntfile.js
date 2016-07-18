@@ -1,7 +1,11 @@
 "use strict";
 module.exports = function(grunt){
 	grunt.initConfig({
+		pkg:grunt.file.readJSON('package.json'),
 		uglify:{
+			options:{
+				banner:'/*!<%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'//添加banner
+			},
 			/*最小化、混淆、合并javascript 文件*/
 			target:{
 				files:{
@@ -11,10 +15,9 @@ module.exports = function(grunt){
 			minjs:{//最小化、混淆所有js/ 目录下的javascript文件
 				files:[{
 					expand:true,
-					cwd:'js/',
-					src:['**/*.js','!**/*.min.js'],
-					dest:'js/',
-					ext:'.min.js'
+					cwd:'js/',//源文件目录
+					src:['**/*.js','!**/*.min.js'],//所有的js文件
+					dest:'js/'//输出到此目录下
 				}]
 			}
 		},
@@ -49,6 +52,7 @@ module.exports = function(grunt){
 	});
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.registerTask('default',['uglify','watch']);
-	grunt.registerTask('ug',['uglify']);
+	grunt.registerTask('default',['uglify:minjs','watch']);
+	grunt.registerTask('target',['uglify:target']);
+	grunt.registerTask('minjs',['uglify:minjs']);
 };
