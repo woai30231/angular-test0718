@@ -1,0 +1,24 @@
+{
+  "name": "angular-test0718",
+  "version": "0.0.1",
+  "description": "\"\"\u001b[Dangular测试",
+  "main": "��",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woai30231/angular-test0718/"
+  },
+  "keywords": [
+    "''\u001b[D测试"
+  ],
+  "author": "''\u001b[DJianfeng\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}

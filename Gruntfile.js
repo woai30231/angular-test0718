@@ -1,0 +1,54 @@
+"use strict";
+module.exports = function(grunt){
+	grunt.initConfig({
+		uglify:{
+			/*最小化、混淆、合并javascript 文件*/
+			target:{
+				files:{
+					'js/all.min.js':['js/all.js']
+				}
+			},
+			minjs:{//最小化、混淆所有js/ 目录下的javascript文件
+				files:[{
+					expand:true,
+					cwd:'js/',
+					src:['**/*.js','!**/*.min.js'],
+					dest:'js/',
+					ext:'.min.js'
+				}]
+			}
+		},
+		watch:{
+			/*监控文件变化并执行相应任务*/
+			img:{
+				files:['img/**/*.{png,jpg,jpeg}'],
+				options:{
+					livereload:true
+				}
+			},
+			css:{
+				options:{
+					event:['changed','added'],
+					livereload:true
+				},
+				files:['css/**/*.css']
+			},
+			js:{
+				options:{
+					livereload:true
+				},
+				files:['js/**/*.js']
+			},
+			html:{
+				options:{
+					livereload:true
+				},
+				files:['*.html']
+			}
+		}
+	});
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.registerTask('default',['uglify','watch']);
+	grunt.registerTask('ug',['uglify']);
+};
