@@ -1,0 +1,14 @@
+{
+  "name": "angular-test0718",
+  "authors": [
+    "Jianfeng"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-ui-router": "^0.3.1",
+    "jquery": "^3.1.0"
+  },
+  "devDependencies": {
+    "jquery": "^3.1.0"
+  }
+}
