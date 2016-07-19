@@ -21,6 +21,10 @@ html,body,div,p,a,select,aside,section,article,header,footer,mark,button,input,s
 	vertical-align:baseline;
 	font:inherit;
 }
+body{
+	position:relative;
+	overflow:hidden;
+}
 aside,section,article,header,footer{
 	display:block;
 }
