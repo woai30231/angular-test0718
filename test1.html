@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+	<title>网页分辨率测试</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1.0"/>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0"/>
+	<meta name="renderer" content="webkit"/>
+	<meta name="discription" content=""/>
+	<meta name="Keywords" content=""/>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css"/>
+	<style type="text/css">
+		.box{
+			width:37.5px;
+			min-height:150px;
+			background-color:cyan;
+		}
+	</style>
+
+</head>
+<body>
+<!--未加viewport之前的显示状况-->
+<!--我们发现看到在手机上并没有像css设置了显示了150px的高度，而是只显示了大概75px的样子，说明div是被缩放了之后放在里面的-->
+<!-- <div class="box"></div> -->
+<!--加完viewport之后的显示状况-->
+<!--我们发现能正常看到高度为150px的div，可见缩放正常了-->
+<div class="box"></div>
+</body>
+</html>
