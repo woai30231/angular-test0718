@@ -32,8 +32,19 @@
 <div ng-controller="b">
 	<ul>
 		<!--我们发现ng-repeat对对象循环的方式，是循环键值，而且二级对象不能循环，只能简单返回一个对象的内部字符串表示-->
-		<li ng-repeat="x in obj" ng-bind="x">
+		<li ng-repeat="x in obj" ng-bind="x"></li>
+	</ul>
+</div>
+<div ng-controller="c">
+	<h5>二维数组或者多维数组</h5>
+	<ul>
+		<li ng-repeat='x in arr track by $index'>
+			<span ng-repeat="s in x track by $index">{{s}}</span>
 		</li>
+	</ul>
+	<h5>二级对象或者多级对象</h5>
+	<ul>
+		<li></li>
 	</ul>
 </div>
 <script type="text/javascript" src="./js/angular/angular.js"></script>
@@ -59,6 +70,19 @@
 				author:'李志刚'
 			}
 		};
+	}]);
+	myApp.controller('c',['$scope',function($scope){
+		//二维数组
+		$scope.arr = ['xiaoming',['xiaozhen','female']];
+		//二级对象
+		$scope.obj = {
+			name:'xiaoming',
+			favouriteBook:{
+				bookName:'《创京东》',
+				year:2016,
+				author:'李志刚'
+			}
+		}
 	}]);
 </script>
 </body>
