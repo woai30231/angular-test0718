@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+	<title>angular ng-repeat</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1.0"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+	<meta name="renderer" content="webkit"/>
+	<meta name="discription" content=""/>
+	<meta name="Keywords" content=""/>
+	<style type="text/css">
+		ul{
+			list-style:none;
+			margin-bottom:15px;
+		}
+		ul:last-child{
+			margin-bottom:0px;
+		}
+	</style>
+
+</head>
+<body ng-app="myApp">
+<div ng-controller="a">
+	<ul>
+		<!--我们发现使用angular表达式的方式，会在页面渲染的时候，会短暂的看到表达式，这个体验不是很好，所以我们看下能不能用ng-bind的方式改变这种状况-->
+		<!--我们还发现一个问题，如果数组里面有两个相同的数组元素，那么控制台会报错，解决这个问题的方法就是使用track by $index-->
+		<!-- <li ng-repeat="x in arr">{{x}}</li> -->
+		<!-- <li ng-repeat="x in arr" ng-bind="x"></li> -->
+		<li ng-repeat="x in arr track by $index" ng-bind="x"></li>
+	</ul>
+</div>
+<div ng-controller="b">
+	<ul>
+		<!--我们发现ng-repeat对对象循环的方式，是循环键值，而且二级对象不能循环，只能简单返回一个对象的内部字符串表示-->
+		<li ng-repeat="x in obj" ng-bind="x">
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" src="./js/angular/angular.js"></script>
+<script type="text/javascript">
+	var myApp = angular.module("myApp",[]);
+	myApp.controller('a',['$scope',function($scope){
+		//用创建数组的方式来使用，看一下数组情况下ng-repeat是怎么使用的
+		$scope.arr = ['xiaoming','xiaoli','xiaoxu','xiaoxu','xiaozhen','xiaowang','xiaohuang'];
+		$scope.x = 'i am x';
+	}]);
+	myApp.controller('b',['$scope',function($scope){
+		//用创建对象字面量的方式，来查看一下ng-repeat的使用方法
+		$scope.obj = {
+			name:'xiaoming',
+			work:'engineer',
+			hobby:'e-sports',
+			girlFriend:'xiaohong',
+			clothes:'T-shirt',
+			age:24,
+			favouriteBook:{
+				name:'《创京东》',
+				year:2016,
+				author:'李志刚'
+			}
+		};
+	}]);
+</script>
+</body>
+</html>
