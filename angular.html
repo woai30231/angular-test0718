@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+	<title>angular function test</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1.0"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+	<meta name="renderer" content="webkit"/>
+	<meta name="discription" content=""/>
+	<meta name="Keywords" content=""/>
+	<link rel="stylesheet" type="text/css" href="./css/reset.css"/>
+	<style type="text/css">
+		ul{
+			list-style:none;
+			font-size:14px;
+			text-align:left;
+			color:#999;
+		}
+		ul li{
+			line-height:30px;
+			padding:0px 6px;
+		}
+	</style>
+</head>
+<body ng-app="myApp">
+<div ng-controller="a">
+	<ul>
+		<!-- 定义在全局的函数对ng-click无效，定义在控制下的普通函数也对ng-click无效，必须是当前模型下或者全局模型下的方法才有效 -->
+		<!-- 注：全局模型使用run方法配置 -->
+		<!-- 在ng-click时间的注册函数参数$index对ng-repeat得到的节点或者子节点有效 -->
+
+		<!-- 这里$index为undefined -->
+		<li ng-click="_click($index,$event);">测试点击项</li>
+
+
+		<!-- 这里的$index或者它子节点里面的$index为当前元素的索引 -->
+		<li ng-repeat="x in arr1">
+			<a href="javascript:void(0);" ng-click="_click($index,$event);">测试a标签</a>	
+			{{x}}
+		</li>	
+	</ul>
+</div>
+
+
+
+
+<!-- 注：如果给元素设置了ng-controller属性，并设置正确的属性值之后，而没有写模型脚本，那么控制台会报错 -->
+<div ng-controller="b"></div>
+
+<script type="text/javascript" src="./js/angular/angular.js"></script>
+<script type="text/javascript">
+ var myApp = angular.module('myApp',[]);
+ myApp.run(['$rootScope',function($rootScope){
+ 	// $rootScope._click = function(index,e){
+ 	// 	console.log(index+'\n');
+ 	// 	console.log(e);
+ 	// };
+ }]);
+
+
+
+ //控制器a
+ myApp.controller('a',['$scope',function($scope){
+ 	$scope.arr1 = ['xiaoming','xiaohong','xiaozhang','xiaoyu','xiaozhen'];
+ 	$scope.arr2 = {name:'arr2',elements:3};
+ 	var _click = $scope._click = function(index,e){
+ 		console.log(index+'\n');
+ 		console.log(e);
+ 	};
+ }]);
+ function _click(index,e){
+ 	console.log(index+'\n');
+ 	console.log(e);
+ };
+
+
+ //控制器b
+ myApp.controller('b',['$scope',function($scope){
+
+ }]);
+</script>
+</body>
+</html>
