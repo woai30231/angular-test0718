@@ -20,6 +20,15 @@
 			line-height:30px;
 			padding:0px 6px;
 		}
+		.red{
+			color:#c00;
+		}
+		.weight{
+			font-weight:bold;
+		}
+		.del{
+			text-decoration:line-through;
+		}
 	</style>
 </head>
 <body ng-app="myApp">
@@ -45,20 +54,27 @@
 
 
 <!-- 注：如果给元素设置了ng-controller属性，并设置正确的属性值之后，而没有写模型脚本，那么控制台会报错 -->
-<div ng-controller="b"></div>
+<div ng-controller="b">
+	<ul>
+		<!-- ng-class为对象的时候，那么键名为类名，如果键值的求值为真那么就为元素加载相应的类，如果为假，那么就不加 -->
+		<li ng-class="{red:boolear1,del:boolear2,weight:boolear3}">测试文本</li>
+		<!-- ng-class如果为一个字符串，那么将是一个模型 -->
+		<li ng-class="red">测试文本</li>
+	</ul>
+</div>
+
+
+<div ng-controller="c">
+		<!-- 注：ng-change是根据模型数据变化了，执行相应的函数，所以一定要把当前的dom绑定对应的模型 -->
+		<input type="checkbox" ng-model="dd" ng-change="change()"/>
+		<ul>
+			<li ng-model="number" ng-change="change()" ng-bind="number"></li>
+		</ul>
+</div>
 
 <script type="text/javascript" src="./js/angular/angular.js"></script>
 <script type="text/javascript">
  var myApp = angular.module('myApp',[]);
- myApp.run(['$rootScope',function($rootScope){
- 	// $rootScope._click = function(index,e){
- 	// 	console.log(index+'\n');
- 	// 	console.log(e);
- 	// };
- }]);
-
-
-
  //控制器a
  myApp.controller('a',['$scope',function($scope){
  	$scope.arr1 = ['xiaoming','xiaohong','xiaozhang','xiaoyu','xiaozhen'];
@@ -76,8 +92,27 @@
 
  //控制器b
  myApp.controller('b',['$scope',function($scope){
-
+ 	$scope.boolear1 = 'xiaoming';
+ 	$scope.boolear2 = 'xiaohong';
+ 	$scope.boolear3 = '';
+ 	$scope.red = 'red';
  }]);
+
+
+ //控制器c
+ myApp.controller('c',['$scope','$timeout',function($scope,$timeout){
+ 	$scope.number = 0;
+ 	function timeout(){
+ 		$scope.number++;
+ 		$timeout(timeout,1000);
+ 	};
+ 	timeout();
+ 	$scope.change = function(){
+ 		console.log("我的值改变了");
+ 	};
+ }]);
+
+
 </script>
 </body>
 </html>
